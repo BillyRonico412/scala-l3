@@ -5,9 +5,3 @@ def concat(list1: List[Int], list2: List[Int]): List[Int] = list1 match {
 
 
 println(concat(1 :: Nil, 2 :: 5 :: Nil))
-
-
-
-
-
-println(concat(1 :: Nil, 2 :: 5 :: Nil))
