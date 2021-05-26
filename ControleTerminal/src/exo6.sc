@@ -1,4 +1,5 @@
 trait Arbre {
+
     def valeur: Double
 
     def fg: Arbre
@@ -11,6 +12,11 @@ trait Arbre {
             if (p(valeur)) valeur :: (fg.collecte(p) ::: fd.collecte(p))
             else fg.collecte(p) ::: fd.collecte(p)
         case _ => sys.error("operation non définie")
+    }
+
+    def reduce[A, B](op: Double => A, agrege: (A, B, B) => B, neutre: B): B = this match {
+        case ArbreVide => neutre
+        case Noeud(valeur, fg, fd) =>agrege(op(valeur), fg.reduce(op, agrege, neutre), fd.reduce(op, agrege, neutre))
     }
 
 }
